@@ -1,0 +1,6 @@
+{
+	"image": "node:16.16",
+	"extensions": [
+		"dbaeumer.vscode-eslint"
+	]
+}
