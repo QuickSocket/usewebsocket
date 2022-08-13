@@ -1,6 +1,6 @@
 {
 	"name": "@quicksocket/usewebsocket",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "User-friendly React hook for managing the life-cycle of WebSocket connections",
 	"keywords": [
 		"web",
