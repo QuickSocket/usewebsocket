@@ -1,6 +1,6 @@
 {
 	"name": "@quicksocket/usewebsocket",
-	"version": "1.2.0",
+	"version": "3.0.0",
 	"description": "User-friendly React hook for managing the life-cycle of WebSocket connections",
 	"keywords": [
 		"web",
@@ -13,6 +13,7 @@
 		"cycle"
 	],
 	"author": "QuickSocket",
+	"repository": "https://github.com/QuickSocket/usewebsocket",
 	"scripts": {
 		"prepare": "tsc"
 	},

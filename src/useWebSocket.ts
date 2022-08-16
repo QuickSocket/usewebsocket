@@ -26,12 +26,10 @@ export const useWebSocket = (callback: WebSocketCallback, url?: string): UseWebS
 
 		const newWebSocket = new WebSocket(url);
 		setWebSocket(newWebSocket);
-		console.log("URL Changed", "Created new WebSocket and stored in state");
 
 		return () => {
 			newWebSocket.close();
 			setWebSocket(null);
-			console.log("URL Changed", "Closed existing WebSocket and removed state");
 		}
 	}, [url]);
 
@@ -41,8 +39,6 @@ export const useWebSocket = (callback: WebSocketCallback, url?: string): UseWebS
 			return;
 		}
 
-		console.log("WebSocket/Callback Changed", "Created and assigned callbacks");
-
 		const openCallback = () => callback(WebSocketCallbackType.Connected);
 		const errorCallback = () => callback(WebSocketCallbackType.Error);
 		const messageCallback = (e: MessageEvent) => callback(WebSocketCallbackType.Message, e.data);
@@ -50,7 +46,6 @@ export const useWebSocket = (callback: WebSocketCallback, url?: string): UseWebS
 		const closeCallback = () => {
 			callback(WebSocketCallbackType.Disconnected);
 			setWebSocket(null);
-			console.log("WebSocket Closed", "Connection was lost, removed WebSocket from state");
 		};
 
 		currentWebSocket.addEventListener("open", openCallback);
@@ -63,27 +58,22 @@ export const useWebSocket = (callback: WebSocketCallback, url?: string): UseWebS
 			currentWebSocket.removeEventListener("close", closeCallback);
 			currentWebSocket.removeEventListener("error", errorCallback);
 			currentWebSocket.removeEventListener("message", messageCallback);
-			console.log("WebSocket/Callback Changed", "Removed old callbacks");
 		};
 	}, [webSocket, callback]);
 
 	const sendMessageFunc = useMemo<SendMessageFunc>(() => {
 		if (webSocket) {
-			console.log("SendMessage", "Is useable");
 			return data => webSocket.send(data);
 		}
 
-		console.log("SendMessage", "Is unuseable");
 		return () => { };
 	}, [webSocket]);
 
 	const disconnectFunc = useMemo<DisconnectFunc>(() => {
 		if (webSocket) {
-			console.log("Disconnect", "Is useable");
 			return () => webSocket.close();
 		}
 
-		console.log("Disconnect", "Is unuseable");
 		return () => { };
 	}, [webSocket]);
 

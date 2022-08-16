@@ -1,4 +1,4 @@
-# useWebSocket
+# usewebsocket
 
 User-friendly React hook for managing the life-cycle of WebSocket connections.
 
